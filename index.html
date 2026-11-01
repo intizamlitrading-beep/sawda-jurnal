@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="kaa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sawda jurnalı, statistika, risk kalkulyatorı hám tekseriw dizimi">
+<meta property="og:title" content="Sawda jurnalı hám statistika">
+<meta property="og:description" content="Sawdalarıńızdı jazıń, statistikanı hám riskti avtomat kóriń.">
+<meta name="theme-color" content="#c9a227">
+<title>Sawda jurnalı hám statistika</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef2f9;--card:#fff;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--g:#16a34a;--r:#dc2626;--o:#c9a227;--gbg:#f0fdf4;--rbg:#fef2f2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c2e;--ink:#e5e9f2;--mut:#94a3b8;--line:#243049;--gbg:#10261a;--rbg:#2a1416}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:16px}
+.wrap{max-width:1200px;margin:0 auto}
+.top{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.logo{width:64px;height:64px;border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+h1{font-size:21px;margin:0 0 3px}.sub{color:var(--mut);font-size:13px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0 0;padding-bottom:4px}
+button{padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap}
+button.on{background:var(--o);border-color:var(--o);color:#fff}
+.card{background:var(--card);border-radius:16px;padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi small{display:block;color:var(--mut);font-size:11px;text-transform:uppercase;font-weight:600}
+.kpi b{font-size:21px}
+label{font-size:12px;color:var(--mut);font-weight:600;display:block;margin-bottom:4px}
+input,select,textarea{width:100%;padding:8px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:14px;min-width:0;font-family:inherit}
+.mgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.mh{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;font-size:14px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal i{font-style:normal;border:1px solid var(--line);border-radius:7px;min-height:50px;padding:3px;font-size:10px;display:flex;flex-direction:column}
+.cal i.wh{border:0;min-height:0;text-align:center;color:var(--mut);font-weight:700}
+.cal i.w{background:var(--gbg);border-color:var(--g)}.cal i.l{background:var(--rbg);border-color:var(--r)}
+.cal b{font-size:11px}.cal span{font-weight:700}.cal small{color:var(--mut)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:1100px;font-size:13px}
+th{text-align:left;color:var(--mut);font-size:11px;text-transform:uppercase;padding:6px}
+td{padding:4px}td input,td select{padding:6px}
+.g{color:var(--g)}.r{color:var(--r)}.m{color:var(--mut)}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--g)}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ck input{width:20px;margin-top:2px}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <img class="logo" alt="Logo" src="data:image/webp;base64,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">
+      <div><h1 id="ttl"></h1><div class="sub" id="sub"></div></div>
+    </div>
+    <div><button id="lLat">Latın</button> <button id="lCyr">Кирилл</button></div>
+  </div>
+  <nav class="tabs" id="nav"></nav>
+  <main id="main"></main>
+  <div class="sub" id="ver" style="margin:24px 0 8px"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>window.supabase||document.write('<script src="https://unpkg.com/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"><\/script>')</script>
+<script>
+const CFG={url:"https://fpojjawmahldxhqgfmkl.supabase.co",key:"sb_publishable_tknuLVYsJS0CeqX5zMoDcQ_7Ei9b-k3"};
+const KEY="sawda-jurnal-v1";
+const MN=["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr"];
+const WD=["Dú","Si","Sá","Pi","Ju","Sh","Ye"];
+const WF=["Dúyshembi","Siyshembi","Sárshembi","Piyshembi","Juma","Shembi","Yekshembi"];
+const TABS=[["st","Statistika"],["jr","Jurnal"],["rk","Risk kalkulyatorı"],["ck","Tekseriw dizimi"],["sy","Sawda sisteması"],["mt","MT5 ulanıw"]];
+const CA=["Bazar jaǵdayı sistemaǵa sáykes","Áhmiyetli jańalıq joq","Tiykarǵı baǵıt tastıyıqlandı (ósiw/túsiw)","Baha sawda ashıw zonasına keldi","Kiriw signalı tayar (barlıq kiriw shártleri orınlandı)","SL hám TP belgilendi (aldınan rejelestirildi)","Sawda risk qaǵıydalarına sáykes (risk hám lot esaplandı)","Psixologiyalıq jaǵday jaqsı","Aldıńǵı zıyandı qaytarıp alıwǵa urınbayman","Bazardaǵı háreketti ótkizip jiberiwden qorqpayman","Aldıńǵı payda sebepli lot kólemin asırmadım","Ǵázep, eyforiya yamasa kúshli sharshaw jaǵdayında emespen","Qaǵıydalar eki ret buzılsa, sawda toqtatıladı","Kúnlik limitke jetilse, terminal jabıladı","Barlıq qaǵıydalar orınlandı"];
+const CB=["Sawda jurnalǵa jazıldı (tiykarǵı maǵlıwmatlar kiritildi)","Skrinshotlar saqlandı (sawdadan aldın hám keyin)","Qaǵıydalarǵa ámel etildi (processte sistema buzılmadı)","Qátelikler hám juwmaqlar jazıldı (bolsa)"];
+const SY=[["Instrument","Qaysı instrumentlerde sawda qılasız?"],["Sawda waqtı","Qaysı waqıtta sawda qılasız?"],["Waqıt dáwiri (TF)","Qaysı TF ulanıladı? (mısalı: H4 – trend, M30 – zona, M5 – kiriw)"],["Bazar jaǵdayı","Qaysı bazar sharayatında sawda qılasız?"],["Trend filtri","Trend qalay anıqlanadı?"],["Áhmiyetli zonalar","Qaysı zonalarda signal izlenedi?"],["Kiriw","Sawda qashan ashıladı?"],["Kiriwdi tastıyıqlawshılar","Signaldı ne tastıyıqlaydı?"],["Stop Loss (SL)","SL qayaqqa qoyıladı?"],["Payda alıw (TP)","TP qaysı jerde alınadı?"],["Risk basqarıw","Hár bir sawdada risk qalay belgilenedi?"],["Sawdanı basqarıw","Sawda ashılǵannan keyin qalay basqarıladı?"],["Sawda qılınbaytuǵın jaǵdaylar","Qashan sawda ashılmaydı?"],["Kúnlik limitler","Kúnlik sheklewlerińiz qanday?"],["Bektest","Sistema tariyxta qalay sınaldı?"],["Sistemanı jaqsılaw","Sistema qashan ózgertiledi?"],["Paydanı shıǵarıp alıw","Qashan hám qansha payda shıǵarıladı?"],["Qosımsha shárt","Óz qosımsha shártińizdi jazıń."],["Qosımsha shárt","Óz qosımsha shártińizdi jazıń."],["Qosımsha shárt","Óz qosımsha shártińizdi jazıń."]];
+const LIM=["Aylıq","Háptelik","Kúnlik","Hár sawda"];
+
+/* Latın -> Kirill */
+const M={a:"а",á:"ә",b:"б",d:"д",e:"е",f:"ф",g:"г",ǵ:"ғ",h:"ҳ",x:"х",i:"и",ı:"ы",j:"ж",k:"к",l:"л",m:"м",n:"н",ń:"ң",o:"о",ó:"ө",p:"п",q:"қ",r:"р",s:"с",t:"т",u:"у",ú:"ү",v:"в",w:"ў",y:"й",z:"з"};
+function cyr(s){
+  return s.replace(/[A-Za-zÁáǴǵŃńÓóÚúı]+/g,w=>{
+    if(/^[A-Z]{2,}$/.test(w)||w==="PnL")return w;
+    const l=w.toLowerCase();let o="";
+    for(let i=0;i<l.length;i++){
+      const t2=l.substr(i,2);let c,n=1;
+      if(t2==="sh")[c,n]=["ш",2];else if(t2==="ch")[c,n]=["ч",2];else if(t2==="ya")[c,n]=["я",2];
+      else if(t2==="yu")[c,n]=["ю",2];else if(t2==="yo")[c,n]=["ё",2];else if(t2==="ye")[c,n]=["е",2];
+      else if(t2==="ts")[c,n]=["ц",2];else c=M[l[i]]||l[i];
+      o+=(w[i]!==l[i])?c.toUpperCase():c;i+=n-1;
+    }
+    return o;
+  });
+}
+
+const D={lang:"lat",tab:"st",dep:1000,year:new Date().getFullYear(),mon:new Date().getMonth(),tr:[],
+  rc:{risk:60,n:6,rr:2,mul:1.5,from:3,r1:12.5,sl:15,pt:10,lim:[[-15,40],[-6,10],[-3,4],[-0.5,1]]},
+  ca:Array(15).fill(false),cb:Array(4).fill(false),sys:{}};
+let S=JSON.parse(JSON.stringify(D));
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const $=id=>document.getElementById(id);
+const T=s=>S.lang==="cyr"?cyr(s):s;
+const pad=n=>String(n).padStart(2,"0");
+const num=v=>{const n=parseFloat(String(v).replace(",","."));return isNaN(n)?0:n;};
+const r2=n=>Math.round(n*100)/100;
+const money=n=>(n<0?"−":n>0?"+":"")+"$"+Math.abs(r2(n)).toFixed(2);
+const cls=n=>n>0?"g":n<0?"r":"m";
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+const wdi=(y,m,d)=>(new Date(y,m-1,d).getDay()+6)%7;
+const kpi=a=>a.map(x=>`<div class="kpi"><small>${x[0]}</small><b class="${x[2]||""}">${x[1]}</b></div>`).join("");
+const pp=x=>x.pl===""||!S.dep?"—":r2(num(x.pl)/S.dep*100)+"%";
+
+function render(){
+  $("ttl").textContent="📊 "+T("Sawda jurnalı hám statistika");
+  $("sub").textContent=T("Sawdalarıńızdı jazıń, statistikanı hám riskti avtomat kóriń.");
+  document.title=T("Sawda jurnalı hám statistika");
+  $("lLat").classList.toggle("on",S.lang==="lat");$("lCyr").classList.toggle("on",S.lang==="cyr");
+  if(sb&&REC){newPassView();return;}
+  if(sb&&!U){loginView();return;}
+  const TB=TABS.concat(PROF&&PROF.role==="teacher"?[["th","Ustaz paneli"]]:[]);
+  $("nav").innerHTML=TB.map(t=>`<button data-tab="${t[0]}" class="${S.tab===t[0]?"on":""}">${T(t[1])}</button>`).join("")+(sb?`<button id="lo">${T("Shıǵıw")}</button>`:"");
+  const f=({st:viewSt,jr:viewJr,rk:viewRk,ck:viewCk,sy:viewSy,mt:viewMt,th:viewTh}[S.tab])||viewSt;f();
+}
+
+/* ---- Statistika ---- */
+function viewSt(){
+  $("main").innerHTML=`<div class="card"><div class="grid"><div><label>${T("Depozit ($)")}</label><input data-p="dep" type="number" step="any" value="${S.dep}"></div><div><label>${T("Jıl")}</label><input data-p="year" type="number" value="${S.year}"></div></div><div class="grid" id="stk" style="margin-top:12px"></div></div><div class="mgrid" id="stm" style="margin-top:14px"></div>`;
+  upSt();
+}
+function upSt(){
+  const y=S.year,tr=S.tr.filter(x=>x.d&&x.d.startsWith(y+"-")),cl=tr.filter(x=>x.pl!=="");
+  const pnl=cl.reduce((a,x)=>a+num(x.pl),0),win=cl.filter(x=>num(x.pl)>0).length;
+  $("stk").innerHTML=kpi([[T("Balans"),"$"+r2(S.dep)],[T("Kapital"),"$"+r2(S.dep+pnl)],["PnL $",money(pnl),cls(pnl)],["PnL %",S.dep?r2(pnl/S.dep*100)+"%":"—",cls(pnl)],[T("Sawdalar"),tr.length],[T("Paydalı sawdalar"),cl.length?Math.round(win/cl.length*100)+"%":"—"]]);
+  let h="";
+  for(let m=0;m<12;m++){
+    const key=y+"-"+pad(m+1),mt=tr.filter(x=>x.d.startsWith(key)),tot=mt.reduce((a,x)=>a+num(x.pl),0);
+    const n=new Date(y,m+1,0).getDate();
+    let g=WD.map(w=>`<i class="wh">${T(w)}</i>`).join("")+"<i style='visibility:hidden;border:0'></i>".repeat(wdi(y,m+1,1));
+    for(let d=1;d<=n;d++){
+      const dt=mt.filter(x=>x.d===key+"-"+pad(d)),s=dt.reduce((a,x)=>a+num(x.pl),0);
+      g+=`<i class="${dt.length?(s>0?"w":s<0?"l":""):""}"><b>${d}</b>${dt.length?`<span>${r2(s)}$</span><small>${dt.length} ${T("sawda")}</small>`:""}</i>`;
+    }
+    h+=`<div class="card" style="margin:0"><div class="mh"><b>${T(MN[m])} ${y}</b><span class="${cls(tot)}">${money(tot)} · ${mt.length} ${T("sawda")}</span></div><div class="cal">${g}</div></div>`;
+  }
+  $("stm").innerHTML=h;
+}
+
+/* ---- Jurnal ---- */
+function viewJr(){
+  const opts=MN.map((m,i)=>`<option value="${i}" ${i===S.mon?"selected":""}>${T(m)}</option>`).join("");
+  $("main").innerHTML=`<div class="card"><div class="grid"><div><label>${T("Ay")}</label><select data-mon="1">${opts}</select></div><div><label>${T("Jıl")}</label><input data-p="year" type="number" value="${S.year}"></div></div><div class="grid" id="jk" style="margin-top:12px"></div></div>
+  <div class="card"><div class="tw"><table><thead><tr><th>№</th><th>${T("Sáne")}</th><th>${T("Waqıt")}</th><th>${T("Instrument")}</th><th>TF</th><th>${T("Kiriw")}</th><th>SL</th><th>TP</th><th>Lot</th><th>${T("Risk")} %</th><th>${T("Túri")}</th><th>PnL $</th><th>PnL %</th><th>${T("Sawda nege ashıldı?")}</th><th></th></tr></thead><tbody id="jb"></tbody></table></div><p><button class="on" id="jadd">${T("+ Sawda qosıw")}</button></p></div>`;
+  drawJ();
+}
+function mtr(){const k=S.year+"-"+pad(S.mon+1);return S.tr.filter(x=>x.d.startsWith(k)).sort((a,b)=>(a.d+a.t).localeCompare(b.d+b.t));}
+function drawJ(){
+  const inp=(x,f,w)=>`<td><input data-f="${f}" value="${esc(x[f])}" style="min-width:${w||60}px"></td>`;
+  $("jb").innerHTML=mtr().map((x,i)=>{
+    const [y,m,d]=x.d.split("-").map(Number);
+    return `<tr data-id="${x.id}"><td class="m">${i+1}</td><td><input type="date" data-f="d" value="${x.d}"><small class="m wd">${T(WF[wdi(y,m,d)])}</small></td><td><input type="time" data-f="t" value="${x.t}"></td>${inp(x,"ins",80)}${inp(x,"tf",45)}${inp(x,"en")}${inp(x,"sl")}${inp(x,"tp")}${inp(x,"lot",50)}${inp(x,"rk",50)}<td><select data-f="ty"><option ${x.ty==="Buy"?"selected":""}>Buy</option><option ${x.ty==="Sell"?"selected":""}>Sell</option></select></td>${inp(x,"pl",70)}<td class="pp">${pp(x)}</td>${inp(x,"why",160)}<td><button data-del="${x.id}">✕</button></td></tr>`;
+  }).join("");
+  lockMt();upJr();
+}
+function upJr(){
+  const tr=mtr().filter(x=>x.pl!==""),pnl=tr.reduce((a,x)=>a+num(x.pl),0);
+  $("jk").innerHTML=kpi([[T("Balans"),"$"+r2(S.dep)],[T("Sawdalar"),mtr().length],["PnL $",money(pnl),cls(pnl)],["PnL %",S.dep?r2(pnl/S.dep*100)+"%":"—",cls(pnl)]]);
+}
+
+/* ---- Risk kalkulyatorı ---- */
+function viewRk(){
+  const c=S.rc,fld=(k,l)=>`<div><label>${T(l)}</label><input data-rc="${k}" type="number" step="any" value="${c[k]}"></div>`;
+  $("main").innerHTML=`<div class="two"><div class="card"><div class="grid">${fld("risk","Ulıwma risk ($)")}${fld("n","Ulıwma sawda sanı")}${fld("rr","TP RR")}${fld("mul","Risk kóbeytkish")}${fld("from","Neshinshi sawdadan baslanadı")}</div><div id="rko" class="tw" style="margin-top:12px"></div></div>
+  <div><div class="card" style="margin-top:14px"><div class="grid">${fld("r1","Bir sawdaǵa risk ($)")}${fld("sl","SL (pt)")}${fld("pt","1 pt bahası ($)")}</div><div class="grid" id="lotk" style="margin-top:12px"></div><p class="m" style="font-size:12px">${T("Lot = risk / SL / 1 pt bahası. 1 pt bahası: XAUUSD 1, EURUSD 10, SP500 0.1, BTCUSD 0.01")}</p></div>
+  <div class="card"><b>${T("Risk limitleri")}</b><div class="tw" id="limo" style="margin-top:8px"></div></div></div></div>`;
+  upRk();
+}
+function upRk(){
+  const c=S.rc,N=Math.max(1,Math.floor(c.n)),ok=!(c.from<=0||c.from>N||c.mul<=0);
+  const w=i=>ok?(i<c.from?1:Math.pow(c.mul,i-c.from+1)):1;
+  const den=(!ok||c.mul===1)?N:(c.from-1)+c.mul*(Math.pow(c.mul,N-c.from+1)-1)/(c.mul-1);
+  let cum=0,rows="";
+  for(let i=1;i<=N;i++){
+    const r=c.risk*w(i)/den,p=r*c.rr;
+    rows+=`<tr><td>${i}</td><td>$${r2(r)}</td><td class="g">+$${r2(p)}</td><td class="r">${i>1?"−$"+r2(cum):"—"}</td><td class="${cls(p-cum)}">${i>1?money(p-cum):"—"}</td></tr>`;
+    cum+=r;
+  }
+  rows+=`<tr><td colspan="3" class="m">${T("Hámme sawda zıyan bolsa")}</td><td class="r">−$${r2(cum)}</td><td></td></tr>`;
+  $("rko").innerHTML=`<table style="min-width:0"><thead><tr><th>${T("Sawda")}</th><th>${T("Risk")}</th><th>${T("Payda")}</th><th>${T("Zıyan")}</th><th>${T("Delta payda")}</th></tr></thead><tbody>${rows}</tbody></table>`;
+  $("lotk").innerHTML=kpi([["Lot",c.sl&&c.pt?r2(c.r1/c.sl/c.pt*100)/100:"—"]]);
+  $("limo").innerHTML=`<table style="min-width:0"><thead><tr><th>${T("Dáwir")}</th><th>${T("Risk")} %</th><th>${T("Risk")} $</th><th>${T("Payda")} %</th><th>${T("Payda")} $</th></tr></thead><tbody>${c.lim.map((l,i)=>`<tr><td>${T(LIM[i])}</td><td><input data-lim="${i},0" type="number" step="any" value="${l[0]}"></td><td class="r">${money(S.dep*l[0]/100)}</td><td><input data-lim="${i},1" type="number" step="any" value="${l[1]}"></td><td class="g">${money(S.dep*l[1]/100)}</td></tr>`).join("")}</tbody></table>`;
+}
+/* limit inputs are re-rendered by upRk, so refresh only the $ columns */
+function limUpdate(){ const rows=$("limo").querySelectorAll("tr");S.rc.lim.forEach((l,i)=>{const tds=rows[i+1].children;tds[2].textContent=money(S.dep*l[0]/100);tds[4].textContent=money(S.dep*l[1]/100);}); }
+
+/* ---- Tekseriw dizimi ---- */
+function viewCk(){
+  const blk=(a,list,title)=>{const n=S[a].filter(Boolean).length;return `<div class="card" style="margin:0"><b>${T(title)}</b><div class="m" style="font-size:13px">${n} / ${list.length}</div><div class="bar"><i style="width:${n/list.length*100}%"></i></div>${list.map((t,i)=>`<label class="ck"><input type="checkbox" data-ck="${a}:${i}" ${S[a][i]?"checked":""}><span>${T(t)}</span></label>`).join("")}</div>`;};
+  $("main").innerHTML=`<div class="two" style="margin-top:14px">${blk("ca",CA,"Sawdadan aldınǵı tekseriw dizimi")}${blk("cb",CB,"Sawdadan keyingi tekseriw dizimi")}</div>`;
+}
+
+/* ---- Sawda sisteması ---- */
+function viewSy(){
+  $("main").innerHTML=`<div class="card"><label>${T("Sawda sistemasınıń qısqasha sharhı")}</label><textarea rows="4" data-sy="sum">${esc(S.sys.sum||"")}</textarea></div>`+SY.map((s,i)=>`<div class="card"><b>${i+1}. ${T(s[0])}</b><div class="m" style="font-size:13px;margin:4px 0 8px">${T(s[1])}</div><textarea rows="2" data-sy="${i}">${esc(S.sys[i]||"")}</textarea></div>`).join("");
+}
+
+/* ---- Hádiyseler ---- */
+const main=$("main");
+main.addEventListener("input",ev=>{
+  const el=ev.target,d=el.dataset;
+  if(el.id==="ths"){THF=el.value;drawTh();return;}
+  if(d.p!==undefined){S[d.p]=num(el.value);save();S.tab==="st"?upSt():drawJ();}
+  else if(d.mon){S.mon=+el.value;save();drawJ();}
+  else if(d.rc){S.rc[d.rc]=num(el.value);save();upRk();}
+  else if(d.lim){const [i,j]=d.lim.split(",");S.rc.lim[i][j]=num(el.value);save();limUpdate();}
+  else if(d.sy!==undefined){S.sys[d.sy]=el.value;save();}
+  else if(d.f){
+    const tr=el.closest("tr"),x=S.tr.find(r=>String(r.id)===tr.dataset.id);x[d.f]=el.value;save();pushRow(x);
+    if(d.f==="pl"){tr.querySelector(".pp").textContent=pp(x);upJr();}
+    if(d.f==="d"&&el.value){const [y,m,dd]=el.value.split("-").map(Number);tr.querySelector(".wd").textContent=T(WF[wdi(y,m,dd)]);}
+  }
+});
+main.addEventListener("change",ev=>{
+  const el=ev.target;
+  if(el.dataset.ck){const [a,i]=el.dataset.ck.split(":");S[a][+i]=el.checked;save();viewCk();}
+});
+main.addEventListener("click",async ev=>{
+  const id=ev.target.id;
+  if(id==="mi"||id==="mu"||id==="mf"){AM=id==="mi"?"in":id==="mu"?"up":"fg";loginView();return;}
+  if(id==="afg"){
+    const em=$("ae").value.trim();if(!em){showA(T("Aldın emaildi jazıń."));return;}
+    const res=await sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname});
+    if(res.error)showA(aerr(res.error.message));else showA(T("Poshtańızǵa parol tiklew siltemesi jiberildi. Xattı tekserip, siltemeni basıń."),true);
+    return;
+  }
+  if(id==="ain"||id==="aup"){
+    const up=id==="aup",email=$("ae").value.trim(),password=$("ap").value,name=up?$("an").value.trim():"";
+    if(up&&!name){showA(T("Atıńızdı jazıń."));return;}
+    if(!email||!password){showA(T("Email hám parol jazıń."));return;}
+    const res=up?await sb.auth.signUp({email,password,options:{data:{full_name:name}}}):await sb.auth.signInWithPassword({email,password});
+    if(res.error){showA(aerr(res.error.message));return;}
+    if(!res.data.session){showA(T("Poshtańızǵa xat jiberildi. Silteme arqalı tastıyıqlań, keyin kiriń."),true);return;}
+    U=res.data.session.user;await loadCloud();render();
+  }
+  const sr=ev.target.closest("tr[data-st]");if(sr){viewStu(sr.dataset.st);return;}
+  if(id==="thback"){viewTh();return;}
+  if(id==="npw"){const a=$("n1").value,b=$("n2").value;if(a.length<6){$("ner").textContent=T("Parol keminde 6 belgi bolıwı kerek.");return;}if(a!==b){$("ner").textContent=T("Parollar birdey emes.");return;}const rr=await sb.auth.updateUser({password:a});if(rr.error){$("ner").textContent=rr.error.message;return;}REC=false;history.replaceState(null,"",location.pathname);await loadCloud();render();alert(T("Parol ózgertildi. Endi jańa parol menen kire alasız."));return;}
+  if(id==="jadd"){
+    const k=S.year+"-"+pad(S.mon+1),t=new Date(),today=t.getFullYear()+"-"+pad(t.getMonth()+1)+"-"+pad(t.getDate());
+    const d=today.startsWith(k)?today:k+"-01";
+    let row={id:Date.now()+Math.floor(Math.random()*1000),src:"manual",d,t:"",ins:"",tf:"",en:"",sl:"",tp:"",lot:"",rk:"",ty:"Buy",pl:"",why:""};
+    if(sb&&U){const r=await sb.from("trades").insert({user_id:U.id,account:0,ticket:-Date.now(),source:"manual",type:"Buy",open_time:d+"T00:00:00"}).select().single();if(r.error){alert(r.error.message);return;}row=mapRow(r.data);}
+    S.tr.push(row);save();drawJ();
+  }
+  const del=ev.target.dataset.del;
+  if(del&&confirm(T("Bul sawda óshirilsin be?"))){if(sb&&U)await sb.from("trades").delete().eq("id",del);S.tr=S.tr.filter(r=>String(r.id)!==del);save();drawJ();}
+  if(id.startsWith("cp")){navigator.clipboard.writeText(ev.target.dataset.v).then(()=>{ev.target.textContent="✓";});}
+});
+$("nav").addEventListener("click",async ev=>{const t=ev.target.dataset.tab;if(t){S.tab=t;save();render();}if(ev.target.id==="lo"){await sb.auth.signOut();U=null;PROF=null;S.tr=[];render();}});
+$("lLat").onclick=()=>{S.lang="lat";save();render();};
+$("lCyr").onclick=()=>{S.lang="cyr";save();render();};
+
+/* ---- Server (Supabase) ---- */
+let sb=null,U=null,PROF=null,tmr={},REC=false,TH=[],THF="";
+if(window.supabase&&CFG.url.startsWith("https://")){sb=supabase.createClient(CFG.url,CFG.key);sb.auth.onAuthStateChange((ev,ses)=>{if(ev==="PASSWORD_RECOVERY"){REC=true;U=ses?ses.user:null;render();}});}
+function mapRow(r){
+  const o=new Date(r.open_time||r.close_time||Date.now());
+  return{id:r.id,src:r.source,d:o.getFullYear()+"-"+pad(o.getMonth()+1)+"-"+pad(o.getDate()),t:pad(o.getHours())+":"+pad(o.getMinutes()),
+    ins:r.symbol||"",tf:r.tf||"",en:r.open_price==null?"":String(r.open_price),sl:r.sl==null?"":String(r.sl),tp:r.tp==null?"":String(r.tp),
+    lot:r.volume==null?"":String(r.volume),rk:r.risk_usd&&S.dep?String(r2(r.risk_usd/S.dep*100)):"",ty:/sell/i.test(r.type)?"Sell":"Buy",
+    pl:String(r2((+r.profit||0)+(+r.commission||0)+(+r.swap||0))),why:r.reason||""};
+}
+async function loadCloud(){
+  const p=await sb.from("profiles").select("*").eq("id",U.id).single();PROF=p.data;
+  const q=await sb.from("trades").select("*").eq("user_id",U.id).order("open_time",{ascending:false}).limit(5000);
+  S.tr=(q.data||[]).map(mapRow);save();
+}
+function pushRow(x){
+  if(!sb||!U)return;clearTimeout(tmr[x.id]);
+  tmr[x.id]=setTimeout(()=>{
+    const p={tf:x.tf,reason:x.why};
+    if(x.src!=="mt5")Object.assign(p,{symbol:x.ins,open_price:num(x.en)||null,sl:num(x.sl)||null,tp:num(x.tp)||null,volume:num(x.lot)||null,type:x.ty,profit:num(x.pl),risk_usd:num(x.rk)*S.dep/100,open_time:x.d+"T"+(x.t||"00:00")+":00"});
+    sb.from("trades").update(p).eq("id",x.id).then(()=>{});
+  },600);
+}
+function lockMt(){
+  if(!sb)return;
+  document.querySelectorAll("#jb tr").forEach(tr=>{
+    const x=S.tr.find(r=>String(r.id)===tr.dataset.id);
+    if(x&&x.src==="mt5"){tr.querySelectorAll("[data-f]").forEach(el=>{if(el.dataset.f!=="tf"&&el.dataset.f!=="why")el.disabled=true;});const b=tr.querySelector("[data-del]");if(b)b.remove();}
+  });
+}
+let AM="in",AE="";
+function showA(m,ok){const e=$("aer");if(e){e.className=ok?"g":"r";e.textContent=m;}}
+function aerr(m){
+  const l=String(m).toLowerCase(),k=[["invalid login","Email yamasa parol qáte."],["valid password","Parol jazıń (keminde 6 belgi)."],["at least 6","Parol keminde 6 belgi bolıwı kerek."],["already registered","Bul email aldın dizimnen ótken. Kiriw arqalı kiriń."],["not confirmed","Email tastıyıqlanbaǵan. Poshtańızdı tekseriń."],["rate limit","Júdá kóp urınıw boldı. Birazdan keyin qaytalań."],["email","Emaildi durıs jazıń."]];
+  for(const x of k)if(l.includes(x[0]))return T(x[1]);
+  return m;
+}
+function loginView(){
+  if($("ae"))AE=$("ae").value;
+  $("nav").innerHTML="";
+  const f=(id,l,ty)=>`<label>${T(l)}</label><input id="${id}" type="${ty||"text"}" ${id==="ae"?`value="${esc(AE)}"`:""}>`;
+  const lk=(id,t)=>`<button id="${id}" style="border:0;background:none;color:var(--o);padding:0">${T(t)}</button>`;
+  let h;
+  if(AM==="up")h=`<b>${T("Dizimnen ótiw")}</b><div style="margin-top:10px">${f("an","Atıńız")}${f("ae","Email","email")}${f("ap","Parol","password")}</div><p><button class="on" id="aup">${T("Dizimnen ótiw")}</button></p><p class="m">${T("Akkauntıńız bar ma?")} ${lk("mi","Kiriw")}</p>`;
+  else if(AM==="fg")h=`<b>${T("Parol tiklew")}</b><p class="m" style="font-size:13px">${T("Dizimnen ótkende jazǵan emailińizdi kiritiń. Parol tiklew siltemesi poshtańızǵa jiberiledi.")}</p><div>${f("ae","Email","email")}</div><p><button class="on" id="afg">${T("Jiberiw")}</button></p><p>${lk("mi","← Kiriwge qaytıw")}</p>`;
+  else h=`<b>${T("Kiriw")}</b><div style="margin-top:10px">${f("ae","Email","email")}${f("ap","Parol","password")}</div><p><button class="on" id="ain">${T("Kiriw")}</button></p><p>${lk("mf","Parolıńızdı umıttıńız ba?")}</p><p class="m">${T("Akkauntıńız joq pa?")} ${lk("mu","Dizimnen ótiw")}</p>`;
+  $("main").innerHTML=`<div class="card" style="max-width:420px;margin:24px auto">${h}<p id="aer" style="margin:6px 0 0;font-size:14px"></p></div>`;
+}
+function viewMt(){
+  if(!sb||!PROF){$("main").innerHTML=`<div class="card">${T("Server ulanbaǵan. index.html ishindegi CFG maydanın toltırıń.")}</div>`;return;}
+  const n=S.tr.filter(x=>x.src==="mt5").length,cp=(k,v)=>`<div style="display:flex;gap:6px"><input readonly value="${esc(v)}"><button id="cp${k}" data-v="${esc(v)}">${T("Kóshiriw")}</button></div>`;
+  $("main").innerHTML=`<div class="card"><b>${T("MT5 ulanıw")}</b><ol style="line-height:1.8;font-size:14px"><li>${T("SawdaSync.mq5 fayldı MT5 > Fayl > Maǵlıwmat papkasın ashıw > MQL5 > Experts ishine salıń, MetaEditor-de F7 menen kompilyatsiya qılıń.")}</li><li>${T("MT5: Sazlawlar > Ekspert keńesshiler > WebRequest ruxsatın qosıp, tómendegi Server URL di dizimge qosıń.")}</li><li>${T("SawdaSync di grafikke taslap, tómendegi úsh maǵlıwmattı kirgiziń. Algo-trading tuǵması jasıl bolıwı kerek.")}</li></ol><label>Sync key</label>${cp("1",PROF.sync_key)}<label>Server URL</label>${cp("2",CFG.url)}<label>Anon key</label>${cp("3",CFG.key)}<p class="m">${T("MT5-ten alınǵan sawdalar")}: <b>${n}</b></p></div>`;
+}
+function newPassView(){
+  $("nav").innerHTML="";
+  $("main").innerHTML=`<div class="card" style="max-width:420px;margin:24px auto"><b>${T("Jańa parol qoyıw")}</b><div style="margin-top:10px"><label>${T("Jańa parol")}</label><input id="n1" type="password"><label>${T("Parolı qaytalań")}</label><input id="n2" type="password"></div><p><button class="on" id="npw">${T("Saqlaw")}</button></p><p class="r" id="ner"></p></div>`;
+}
+async function viewTh(){
+  $("main").innerHTML=`<div class="card"><input id="ths" placeholder="${T("Oqıwshını izlew…")}" value="${esc(THF)}"><div class="tw" style="margin-top:10px"><table style="min-width:0"><thead><tr><th>${T("Oqıwshı")}</th><th>MT5</th><th>${T("Sawdalar")}</th><th>PnL $</th><th>${T("Paydalı sawdalar")}</th><th>${T("Aqırǵı sawda")}</th></tr></thead><tbody id="thb"></tbody></table></div><p class="m" style="font-size:12px">${T("Oqıwshını basıp, onıń toliq statistikasın kóriń.")}</p></div>`;
+  const r=await sb.rpc("teacher_stats");TH=r.data||[];drawTh();
+}
+function drawTh(){
+  const q=THF.toLowerCase();
+  $("thb").innerHTML=TH.filter(x=>((x.full_name||"")+" "+(x.email||"")).toLowerCase().includes(q)).map(x=>`<tr data-st="${x.user_id}" style="cursor:pointer"><td><b>${esc(x.full_name)}</b><br><small class="m">${esc(x.email)}</small></td><td>${+x.mt5_trades?"✓":"—"}</td><td>${x.trades}</td><td class="${cls(+x.pnl)}">${money(+x.pnl)}</td><td>${+x.trades?Math.round(x.wins/x.trades*100)+"%":"—"}</td><td class="m">${x.last_trade?String(x.last_trade).slice(0,10):"—"}</td></tr>`).join("");
+}
+async function viewStu(id){
+  const st=TH.find(x=>x.user_id===id)||{};
+  $("main").innerHTML=`<div class="card"><button id="thback">← ${T("Artqa")}</button> <b>${esc(st.full_name)}</b> <span class="m">${esc(st.email)}</span><div class="grid" id="sk" style="margin-top:12px"></div></div><div class="card"><b>${T("Ayları boyınsha")}</b><div class="tw" id="sm"></div></div><div class="card"><b>${T("Aqırǵı sawdalar")}</b><div class="tw" id="sr"></div></div>`;
+  const q=await sb.from("trades").select("*").eq("user_id",id).order("open_time",{ascending:false}).limit(3000);
+  const a=(q.data||[]).map(x=>({...x,p:(+x.profit||0)+(+x.commission||0)+(+x.swap||0),m:String(x.open_time||x.close_time||"").slice(0,7)}));
+  const pnl=a.reduce((t,x)=>t+x.p,0),gw=a.filter(x=>x.p>0).reduce((t,x)=>t+x.p,0),gl=-a.filter(x=>x.p<0).reduce((t,x)=>t+x.p,0),wins=a.filter(x=>x.p>0).length;
+  const rk=a.filter(x=>x.risk_usd>0),ar=rk.length?rk.reduce((t,x)=>t+ +x.risk_usd,0)/rk.length:0;
+  $("sk").innerHTML=kpi([[T("Sawdalar"),a.length],["PnL $",money(pnl),cls(pnl)],[T("Paydalı sawdalar"),a.length?Math.round(wins/a.length*100)+"%":"—"],[T("Payda koeffitsienti"),gl?r2(gw/gl):"—"],[T("Ortasha risk")+" $",ar?r2(ar):"—"],[T("Aqırǵı sawda"),st.last_trade?String(st.last_trade).slice(0,10):"—"]]);
+  const g={};a.forEach(x=>{(g[x.m]=g[x.m]||[]).push(x);});
+  $("sm").innerHTML=`<table style="min-width:0"><thead><tr><th>${T("Ay")}</th><th>${T("Sawdalar")}</th><th>PnL $</th><th>${T("Paydalı sawdalar")}</th></tr></thead><tbody>${Object.keys(g).sort().reverse().map(k=>{const t=g[k].reduce((s2,x)=>s2+x.p,0);return `<tr><td>${k}</td><td>${g[k].length}</td><td class="${cls(t)}">${money(t)}</td><td>${Math.round(g[k].filter(x=>x.p>0).length/g[k].length*100)}%</td></tr>`;}).join("")}</tbody></table>`;
+  $("sr").innerHTML=`<table style="min-width:0"><thead><tr><th>${T("Sáne")}</th><th>${T("Instrument")}</th><th>${T("Túri")}</th><th>Lot</th><th>PnL $</th><th>TF</th><th>${T("Sawda nege ashıldı?")}</th></tr></thead><tbody>${a.slice(0,40).map(x=>`<tr><td class="m">${String(x.open_time||"").slice(0,16).replace("T"," ")}</td><td>${esc(x.symbol)}</td><td>${esc(x.type)}</td><td>${x.volume??""}</td><td class="${cls(x.p)}">${money(x.p)}</td><td>${esc(x.tf)}</td><td>${esc(x.reason)}</td></tr>`).join("")}</tbody></table>`;
+}
+function errView(){
+  $("nav").innerHTML="";
+  $("main").innerHTML=`<div class="card r">${T("Server kitapxanası júklenbedi. Internetti tekserip, betti jańalań (Ctrl+F5). Sheshilmese, basqa tarmaq yamasa VPN di sınap kóriń.")}</div>`;
+}
+async function boot(){
+  $("ver").textContent="v3 · "+(sb?T("server ulanǵan"):T("server ulanbaǵan"));
+  if(!sb){if(CFG.url.startsWith("https://")&&!window.supabase){errView();return;}render();return;}
+  const g=await sb.auth.getSession();U=g.data.session?g.data.session.user:null;
+  if(U)await loadCloud();
+  render();
+}
+boot();
+</script>
+</body>
+</html>
